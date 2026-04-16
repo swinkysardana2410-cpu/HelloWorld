@@ -1,0 +1,21 @@
+name: Build and Run C++ App in Docker
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: docker build -t cpp-app .
+
+    - name: Run container
+      run: docker run --rm cpp-app
